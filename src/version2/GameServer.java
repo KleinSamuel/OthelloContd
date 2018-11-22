@@ -3,7 +3,6 @@ package version2;
 import old.OthelloAI2;
 import szte.mi.Move;
 import szte.mi.Player;
-import utils.Printer;
 import utils.Utils;
 
 import java.util.Scanner;
@@ -72,28 +71,15 @@ public class GameServer {
         p2.init(1, time_player_2, null);
 
         if(!quiet){
-            System.out.println("## Started Game ##");
+            System.out.println("## STARTED GAME ##");
             model.printCurrentBoard();
+            System.out.println("## ##\n");
         }
 
         /* 0: game ended normally; 1: player1 timeout; 2: player2 timeout; 3: player1 illegal move; 4: player2 illegal move */
         int status = 0;
 
         while(!model.isGameOver()){
-
-            System.out.println();
-            Heuristics hs = new Heuristics(black, model.BOARD_BLACK, model.BOARD_WHITE);
-            System.out.println("Heuristic for "+(black ? "BLACK" : "WHITE"));
-            System.out.println("Chips:\t"+hs.amountChips());
-            System.out.println("Moves:\t"+hs.amountMoves());
-            System.out.println("Stable:\t"+hs.stableChips());
-            System.out.println("## ##");
-            Heuristics hs2 = new Heuristics(!black, model.BOARD_BLACK, model.BOARD_WHITE);
-            System.out.println("Heuristic for "+(!black ? "BLACK" : "WHITE"));
-            System.out.println("Chips:\t"+hs2.amountChips());
-            System.out.println("Moves:\t"+hs2.amountMoves());
-            System.out.println("Stable:\t"+hs2.stableChips());
-            System.out.println("## ##");
 
             if(black){
                 long start = System.currentTimeMillis();
@@ -120,16 +106,16 @@ public class GameServer {
 
             PossibleMoves serverMoves = new PossibleMoves(black, model.BOARD_BLACK, model.BOARD_WHITE);
 
+            if(!quiet){
+                System.out.println("## NEW TURN ##");
+                System.out.println("Current Player:\t"+(black ? "BLACK" : "WHITE"));
+                System.out.println("Possible Moves:");
+                serverMoves.printMoves();
+                System.out.println("Selected Move:\t"+((prevMove != null) ? "["+prevMove.x+","+prevMove.y+"]" : "No Move Selected"));
+            }
+
+
             if(prevMove != null){
-
-                if(!quiet){
-                    System.out.println("Possible Moves:");
-                    serverMoves.printMoves();
-
-                    System.out.println("Move by "+(black ? "BLACK" : "WHITE"));
-                    System.out.println("["+prevMove.x+","+prevMove.y+"]");
-                }
-
                 int movePos = Utils.coordinateToPosition(prevMove.x, prevMove.y);
                 if(!serverMoves.results.containsKey(movePos)){
                     status = black ? 3 : 4;
@@ -137,28 +123,19 @@ public class GameServer {
                 }else{
                     model.makeMove(black, prevMove.x, prevMove.y);
                 }
+            }else if(serverMoves.results.size() > 0){
+                status = black ? 3 : 4;
+                break;
             }
 
             if(!quiet){
+                System.out.println("## CURRENT BOARD STATE ##");
                 model.printCurrentBoard();
-                System.out.println("## ##");
+                System.out.println("## END OF TURN ##");
             }
 
             black = !black;
         }
-
-        Heuristics hs = new Heuristics(black, model.BOARD_BLACK, model.BOARD_WHITE);
-        System.out.println("Heuristic for "+(black ? "BLACK" : "WHITE"));
-        System.out.println("Chips:\t"+hs.amountChips());
-        System.out.println("Moves:\t"+hs.amountMoves());
-        System.out.println("Stable:\t"+hs.stableChips());
-        System.out.println("## ##");
-        Heuristics hs2 = new Heuristics(!black, model.BOARD_BLACK, model.BOARD_WHITE);
-        System.out.println("Heuristic for "+(!black ? "BLACK" : "WHITE"));
-        System.out.println("Chips:\t"+hs2.amountChips());
-        System.out.println("Moves:\t"+hs2.amountMoves());
-        System.out.println("Stable:\t"+hs2.stableChips());
-        System.out.println("## ##");
 
         GameResult result = null;
 
@@ -184,18 +161,20 @@ public class GameServer {
 
     }
 
-    public void startGameSeries(Player p1, Player p2, int roundsPerSide, long timePerGame){
+    public void startGameSeries(Player p1, Player p2, int roundsPerSide, long timePerGame, boolean quiet){
 
-        System.out.println("### ### ### ### ### ### ### ### ### ### ### ### ###");
-        System.out.println("###             Started Game Series             ###");
-        System.out.println("### ### ### ### ### ### ### ### ### ### ### ### ###\n");
+        if(!quiet){
+            System.out.println("### ### ### ### ### ### ### ### ### ### ### ### ###");
+            System.out.println("###             Started Game Series             ###");
+            System.out.println("### ### ### ### ### ### ### ### ### ### ### ### ###\n");
 
-        System.out.println("## Settings ##");
-        System.out.println("Rounds per Side:\t"+(roundsPerSide*2));
-        System.out.println("Time per Game:\t\t"+timePerGame+" ms");
-        System.out.println("## ## ## ## ##\n");
+            System.out.println("## Settings ##");
+            System.out.println("Rounds:\t\t\t\t" + (roundsPerSide * 2));
+            System.out.println("Time per Game:\t\t" + timePerGame + " ms");
+            System.out.println("## ## ## ## ##\n");
 
-        System.out.println("## Started First Half <Player1=Black;Player2=White> ##");
+            System.out.println("## Started First Half <Player1=Black;Player2=White> ##");
+        }
 
         int h1_black = 0, h2_black = 0;
         int h1_white = 0, h2_white = 0;
@@ -234,13 +213,18 @@ public class GameServer {
             current++;
             int newPercent = (int)((current*1.0/total*1.0)*100);
             if(newPercent > percent) {
-                System.out.print("█");
+                if(!quiet) {
+                    System.out.print("█");
+                }
                 percent = newPercent;
             }
         }
-        System.out.println("\n## Finished First Half ##\n");
 
-        System.out.println("## Started Second Half <Player1=White;Player2=Black> ##");
+        if(!quiet) {
+            System.out.println("\n## Finished First Half ##\n");
+
+            System.out.println("## Started Second Half <Player1=White;Player2=Black> ##");
+        }
 
         for (int i = 1; i <= roundsPerSide; i++) {
             GameResult result = playGameAI(p2, p1, timePerGame,true);
@@ -267,12 +251,17 @@ public class GameServer {
             current++;
             int newPercent = (int)((current*1.0/total*1.0)*100);
             if(newPercent > percent){
-                System.out.print("█");
+                if(!quiet) {
+                    System.out.print("█");
+                }
                 percent = newPercent;
             }
         }
-        System.out.println("\n## Finished Second Half ##");
-        System.out.println("\n");
+
+        if(!quiet) {
+            System.out.println("\n## Finished Second Half ##");
+            System.out.println("\n");
+        }
 
         double win_percent_p1 = (((h1_black+h2_white)*1.0)/(roundsPerSide*2.0))*100;
         double win_percent_p2 = (((h1_white+h2_black)*1.0)/(roundsPerSide*2.0))*100;
@@ -282,30 +271,69 @@ public class GameServer {
         String win_percent_p2_string = String.format("%.2f", win_percent_p2);
         String draw_percent_string = String.format("%.2f", draw_percent);
 
-        System.out.println("### ### ### ### ### ### ### ### ### ### ### ### ###");
-        System.out.println("###                   Results                   ###");
-        System.out.println("### ### ### ### ### ### ### ### ### ### ### ### ###\n");
+        if(!quiet) {
+            System.out.println("### ### ### ### ### ### ### ### ### ### ### ### ###");
+            System.out.println("###                   Results                   ###");
+            System.out.println("### ### ### ### ### ### ### ### ### ### ### ### ###\n");
 
-        String titleTemplate = "%-10s %9s %9s %9s %11s %9s %9s %n";
-        String template = "%-10s %9d %9d %9d %11s %9d %9d %n";
-        System.out.printf(titleTemplate, "Player", "1/2", "2/2", "Total", "Percent", "Timeouts", "Illegal Moves");
-        System.out.println();
-        System.out.printf(template, "Player 1", h1_black, h2_white, (h1_black+h2_white), win_percent_p1_string+" %", black_timeouts, black_illegalMoves);
-        System.out.printf(template, "Player 2", h1_white, h2_black, (h1_white+h2_black), win_percent_p2_string+" %", white_timeouts, white_illegalMoves);
-        System.out.printf(template, "Draw", h1_draw, h2_draw, (h1_draw+h2_draw), draw_percent_string+" %", 0, 0);
+            String titleTemplate = "%-10s %9s %9s %9s %11s %9s %9s %n";
+            String template = "%-10s %9d %9d %9d %11s %9d %9d %n";
+            System.out.printf(titleTemplate, "Player", "1/2", "2/2", "Total", "Percent", "Timeouts", "Illegal Moves");
+            System.out.println();
+            System.out.printf(template, "Player 1", h1_black, h2_white, (h1_black + h2_white), win_percent_p1_string + " %", black_timeouts, black_illegalMoves);
+            System.out.printf(template, "Player 2", h1_white, h2_black, (h1_white + h2_black), win_percent_p2_string + " %", white_timeouts, white_illegalMoves);
+            System.out.printf(template, "Draw", h1_draw, h2_draw, (h1_draw + h2_draw), draw_percent_string + " %", 0, 0);
 
-        System.out.println("\nPlayer 1\t\t\t\t\t\t\t\t  Player 2");
-        for (int i = 0; i < ((int)win_percent_p1); i+=2) {
-            System.out.print("█");
+            System.out.println("\nPlayer 1\t\t\t\t\t\t\t\t  Player 2");
+            for (int i = 0; i < ((int) win_percent_p1); i += 2) {
+                System.out.print("█");
+            }
+            for (int i = 0; i < ((int) draw_percent); i += 2) {
+                System.out.print("▒");
+            }
+            for (int i = 0; i < ((int) win_percent_p2); i += 2) {
+                System.out.print("▓");
+            }
+            System.out.println();
         }
-        for (int i = 0; i < ((int)draw_percent); i+=2) {
-            System.out.print("▒");
-        }
-        for (int i = 0; i < ((int)win_percent_p2); i+=2) {
-            System.out.print("▓");
-        }
-        System.out.println();
 
+    }
+
+    public void tweakParams(int roundsPerSide){
+
+        float start = 0f;
+        float end = 1f;
+        float step = 0.25f;
+
+        for (float w_1 = start; w_1 <= end; w_1+=step) {
+            for (float w_2 = start; w_2 <= end; w_2+=step) {
+                for (float w_3 = start; w_3 <= end; w_3+=step) {
+                    for (float w_4 = start; w_4 <= end; w_4+=step) {
+
+                        int wins = 0;
+
+                        Player a_1 = new AI_MinMax(3, new float[]{w_1, w_2, w_3, w_4});
+                        Player a_2 = new AI_Random();
+
+                        for (int i = 0; i < roundsPerSide; i++) {
+                            GameResult result = playGameAI(a_1, a_2, 20000, true);
+                            if(result.winner == 0){
+                                wins++;
+                            }
+                        }
+                        for (int i = 0; i < roundsPerSide; i++) {
+                            GameResult result = playGameAI(a_2, a_1, 20000, true);
+                            if(result.winner == 1){
+                                wins++;
+                            }
+                        }
+
+                        System.out.println(wins+"\tof\t"+(roundsPerSide*2)+"\t"+w_1+" "+w_2+" "+w_3+" "+w_4);
+
+                    }
+                }
+            }
+        }
     }
 
     public void printQuiet(String s, boolean quiet){
@@ -323,11 +351,15 @@ public class GameServer {
         Player p_greedy2 = new AI_Greedy();
         Player p_matrix = new AI_Matrix();
         Player p_best = new OthelloAI2();
+        Player p_minmax = new AI_MinMax();
 
-        //server.startGameSeries(p_greedy, p_best, 6, 4000);
+        //server.startGameSeries(p_random, p_minmax, 50, 60000, true);
 
-        GameResult result = server.playGameAI(p_greedy, p_greedy2, 4000, false);
-        System.out.println(result);
+        //GameResult result = server.playGameAI(p_random, p_minmax, 60000, false);
+        //System.out.println(result);
+
+        server.tweakParams(10);
+
     }
 
 }

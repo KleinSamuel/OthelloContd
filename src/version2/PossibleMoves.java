@@ -12,7 +12,7 @@ public class PossibleMoves {
 
     public PossibleMoves(boolean playerBlack, long black, long white){
         this.moves = 0L;
-        this.results = new HashMap<Integer, Long>();
+        this.results = new HashMap<>();
         compute(playerBlack, black, white);
     }
 
@@ -34,6 +34,28 @@ public class PossibleMoves {
                 addResult(check_NW(i, ownChips, otherChips));
                 addResult(check_SE(i, ownChips, otherChips));
                 addResult(check_SW(i, ownChips, otherChips));
+            }
+        }
+    }
+
+    public void printMoves(){
+        for(Integer i : results.keySet()){
+            Coordinate c = Utils.positionToCoordinate(i);
+            System.out.println("["+c.x+","+c.y+"]");
+        }
+    }
+
+    public void addResult(PositionCheckResult result){
+        if(result != null){
+            /* move already in set -> merge chips to flip */
+            if(this.results.containsKey(result.pos)){
+                long merged = this.results.get(result.pos) | result.toFlip;
+                this.results.put(result.pos, merged);
+            }
+            /* new move */
+            else{
+                this.results.put(result.pos, result.toFlip);
+                this.moves = this.moves ^ (1L << result.pos);
             }
         }
     }
@@ -291,27 +313,5 @@ public class PossibleMoves {
             }
         }
         return null;
-    }
-
-    public void printMoves(){
-        for(Integer i : results.keySet()){
-            Coordinate c = Utils.positionToCoordinate(i);
-            System.out.println("["+c.x+","+c.y+"]");
-        }
-    }
-
-    public void addResult(PositionCheckResult result){
-        if(result != null){
-            /* move already in set -> merge chips to flip */
-            if(this.results.containsKey(result.pos)){
-                long merged = this.results.get(result.pos) | result.toFlip;
-                this.results.put(result.pos, merged);
-            }
-            /* new move */
-            else{
-                this.results.put(result.pos, result.toFlip);
-                this.moves = this.moves ^ (1L << result.pos);
-            }
-        }
     }
 }

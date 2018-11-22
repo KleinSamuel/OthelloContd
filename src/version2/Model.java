@@ -45,13 +45,7 @@ public class Model {
     }
 
     public boolean isBoardFull(){
-        long merge = this.BOARD_BLACK | this.BOARD_WHITE;
-        for (int i = 63; i >= 0; i--) {
-            if(((merge >> i) & 1) != 1){
-                return false;
-            }
-        }
-        return true;
+        return ((this.BOARD_BLACK | this.BOARD_WHITE) == -1);
     }
 
     public boolean isGameOver(){
