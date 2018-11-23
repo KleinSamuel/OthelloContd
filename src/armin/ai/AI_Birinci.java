@@ -68,12 +68,13 @@ public class AI_Birinci implements Player {
         System.out.println(Long.toBinaryString(current.BOARD_BLACK));
         System.out.println(Long.toBinaryString(current.BOARD_WHITE));
 
+        System.out.println("\nresult");
         System.out.println(Long.toBinaryString(x));
         int n = 0;
         while (((x >> 1) & 1) != 0) { n++; }
         System.out.println("bit found at " + n);
 
-        return Utils.positionToCoordinate(63-n);
+        return Utils.positionToCoordinate(n);
     }
 
     private void updateChips(Move enemyMove){

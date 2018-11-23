@@ -77,7 +77,7 @@ public class State {
             State newState = new State(this.board);
             newState.setPlayerNo(!black);
             Coordinate coord = Utils.positionToCoordinate(p);
-            newState.getBoard().makeMove(black, coord.x, coord.y);
+            newState.getBoard().makeMove(newState.getPlayerNo(), coord.x, coord.y);
 //            newState.getBoard().performMove(newState.getPlayerNo(), p);
             possibleStates.add(newState);
         });

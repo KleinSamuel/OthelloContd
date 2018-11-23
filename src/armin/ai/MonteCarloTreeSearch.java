@@ -41,8 +41,8 @@ public class MonteCarloTreeSearch {
         while (System.currentTimeMillis() < end) {
             // Phase 1 - Selection
             Node promisingNode = selectPromisingNode(rootNode);
-//            System.out.println("possible promissing board");
-//            promisingNode.getState().getBoard().printCurrentBoard();
+            System.out.println("possible promissing board");
+            promisingNode.getState().getBoard().printCurrentBoard();
 
             // Phase 2 - Expansion
 //            if (promisingNode.getState().getBoard().checkStatus() == Board.IN_PROGRESS)
