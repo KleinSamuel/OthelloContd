@@ -1,7 +1,7 @@
 package version2;
 
-import armin.ai.AI_Birinci;
-import old.OthelloAI2;
+import armin.ai.BirinciAI;
+//import old.OthelloAI2;
 import szte.mi.Move;
 import szte.mi.Player;
 import utils.Utils;
@@ -300,42 +300,42 @@ public class GameServer {
 
     }
 
-    public void tweakParams(int roundsPerSide){
-
-        float start = 0f;
-        float end = 1f;
-        float step = 0.25f;
-
-        for (float w_1 = start; w_1 <= end; w_1+=step) {
-            for (float w_2 = start; w_2 <= end; w_2+=step) {
-                for (float w_3 = start; w_3 <= end; w_3+=step) {
-                    for (float w_4 = start; w_4 <= end; w_4+=step) {
-
-                        int wins = 0;
-
-                        Player a_1 = new AI_MinMax(3, new float[]{w_1, w_2, w_3, w_4});
-                        Player a_2 = new AI_Random();
-
-                        for (int i = 0; i < roundsPerSide; i++) {
-                            GameResult result = playGameAI(a_1, a_2, 20000, true);
-                            if(result.winner == 0){
-                                wins++;
-                            }
-                        }
-                        for (int i = 0; i < roundsPerSide; i++) {
-                            GameResult result = playGameAI(a_2, a_1, 20000, true);
-                            if(result.winner == 1){
-                                wins++;
-                            }
-                        }
-
-                        System.out.println(wins+"\tof\t"+(roundsPerSide*2)+"\t"+w_1+" "+w_2+" "+w_3+" "+w_4);
-
-                    }
-                }
-            }
-        }
-    }
+//    public void tweakParams(int roundsPerSide){
+//
+//        float start = 0f;
+//        float end = 1f;
+//        float step = 0.25f;
+//
+//        for (float w_1 = start; w_1 <= end; w_1+=step) {
+//            for (float w_2 = start; w_2 <= end; w_2+=step) {
+//                for (float w_3 = start; w_3 <= end; w_3+=step) {
+//                    for (float w_4 = start; w_4 <= end; w_4+=step) {
+//
+//                        int wins = 0;
+//
+//                        Player a_1 = new AI_MinMax(3, new float[]{w_1, w_2, w_3, w_4});
+//                        Player a_2 = new AI_Random();
+//
+//                        for (int i = 0; i < roundsPerSide; i++) {
+//                            GameResult result = playGameAI(a_1, a_2, 20000, true);
+//                            if(result.winner == 0){
+//                                wins++;
+//                            }
+//                        }
+//                        for (int i = 0; i < roundsPerSide; i++) {
+//                            GameResult result = playGameAI(a_2, a_1, 20000, true);
+//                            if(result.winner == 1){
+//                                wins++;
+//                            }
+//                        }
+//
+//                        System.out.println(wins+"\tof\t"+(roundsPerSide*2)+"\t"+w_1+" "+w_2+" "+w_3+" "+w_4);
+//
+//                    }
+//                }
+//            }
+//        }
+//    }
 
     public void printQuiet(String s, boolean quiet){
         if(!quiet){
@@ -345,23 +345,23 @@ public class GameServer {
 
     public static void main(String[] args) throws InterruptedException {
 
-        Integer rounds = 2;
+        Integer rounds = 100;
 //        rounds = Integer.parseInt(args[0]);
 
         GameServer server = new GameServer();
+//
+        Player p_random = new RandomTest();
+//        Player p_greedy = new AI_Greedy();
+//        Player p_greedy2 = new AI_Greedy();
+//        Player p_matrix = new AI_Matrix();
+////        Player p_best = new OthelloAI2();
+//        Player p_minmax = new AI_MinMax();
+        Player p_mcts = new BirinciAI();
 
-        Player p_random = new AI_Random();
-        Player p_greedy = new AI_Greedy();
-        Player p_greedy2 = new AI_Greedy();
-        Player p_matrix = new AI_Matrix();
-        Player p_best = new OthelloAI2();
-        Player p_minmax = new AI_MinMax();
-        Player p_mcts = new AI_Birinci();
-
-//        server.startGameSeries(p_random, p_mcts, rounds, 8000, false);
-
-        GameResult result = server.playGameAI(p_random, p_mcts, 60000, false);
-        System.out.println(result);
+        server.startGameSeries(p_mcts, p_random, rounds, 8000, false);
+//
+//        GameResult result = server.playGameAI(p_mcts, p_random, 8000, false);
+//        System.out.println(result);
 
 //        server.tweakParams(10);
 

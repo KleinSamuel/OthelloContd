@@ -8,6 +8,11 @@ public class Board {
     public long BOARD_BLACK;
     public long BOARD_WHITE;
 
+    public static final int IN_PROGRESS = -1;
+    public static final int DRAW = 0;
+    public static final int P1 = 1;
+    public static final int P2 = 2;
+
     public Board(){
         init();
     }
@@ -22,13 +27,23 @@ public class Board {
         this.BOARD_WHITE = 68853694464L;
     }
 
-    public boolean makeMove(boolean playerBlack, int x, int y){
+    public boolean makeMove(int playerBlack, int x, int y, boolean info) {
+        if (playerBlack == 1) {
+            return makeMove(true, x, y, info);
+        } else {
+            return makeMove(false, x, y, info);
+        }
+    }
+
+    public boolean makeMove(boolean playerBlack, int x, int y, boolean info){
+        if (info)playerBlack = !playerBlack;
         PossibleMoves pMoves = new PossibleMoves(playerBlack, BOARD_BLACK, BOARD_WHITE);
 
         int currentPos = Utils.coordinateToPosition(x, y);
 
         /* check if move is legal */
         if(((pMoves.moves >> currentPos) & 1) != 1){
+//            if (info)System.out.println("info: " + playerBlack + " x " + x+ " y " + y);
             return false;
         }
 
@@ -54,15 +69,19 @@ public class Board {
         return ((this.BOARD_BLACK | this.BOARD_WHITE) == -1);
     }
 
-    public boolean isGameOver(){
+    public int isGameOver(){
         /* check if board is full */
         if(isBoardFull()){
-            return true;
+            return (3 % (determineWinner().winner+1));
         }
         /* check if both players are out of moves */
         PossibleMoves pMovesBlack = new PossibleMoves(true, this.BOARD_BLACK, this.BOARD_WHITE);
         PossibleMoves pMovesWhite = new PossibleMoves(false, this.BOARD_BLACK, this.BOARD_WHITE);
-        return (pMovesBlack.results.size() == 0 && pMovesWhite.results.size() == 0);
+        if (pMovesBlack.results.size() == 0 && pMovesWhite.results.size() == 0) {
+            return (3 % (determineWinner().winner+1));
+        } else {
+            return -1;
+        }
     }
 
     public GameResult determineWinner(){

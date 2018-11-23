@@ -16,6 +16,16 @@ public class PossibleMoves {
         compute(playerBlack, black, white);
     }
 
+    public PossibleMoves(int playerBlack, long black, long white){
+        this.moves = 0L;
+        this.results = new HashMap<>();
+        if(playerBlack == 1) {
+            compute(true, black, white);
+        } else {
+            compute(false, black, white);
+        }
+    }
+
     public void compute(boolean playerBlack, long black, long white){
         long ownChips = black;
         long otherChips = white;

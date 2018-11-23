@@ -1,7 +1,7 @@
 package version2;
 
 public class GameResult {
-    int winner;
+    public int winner;
     int black;
     int white;
     int illegalMove = -1;
@@ -18,11 +18,11 @@ public class GameResult {
         this.white = white;
 
         if(black > white){
-            this.winner = 0;
-        }else if(black < white){
             this.winner = 1;
+        }else if(black < white){
+            this.winner = 2;
         }else{
-            this.winner = -1;
+            this.winner = 0;
         }
     }
 
