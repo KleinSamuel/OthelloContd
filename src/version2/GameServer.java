@@ -1,5 +1,6 @@
 package version2;
 
+import armin.ai.AI_Birinci;
 import old.OthelloAI2;
 import szte.mi.Move;
 import szte.mi.Player;
@@ -344,6 +345,9 @@ public class GameServer {
 
     public static void main(String[] args) throws InterruptedException {
 
+        Integer rounds = 2;
+//        rounds = Integer.parseInt(args[0]);
+
         GameServer server = new GameServer();
 
         Player p_random = new AI_Random();
@@ -352,13 +356,14 @@ public class GameServer {
         Player p_matrix = new AI_Matrix();
         Player p_best = new OthelloAI2();
         Player p_minmax = new AI_MinMax();
+        Player p_mcts = new AI_Birinci();
 
-        //server.startGameSeries(p_random, p_minmax, 50, 60000, true);
+//        server.startGameSeries(p_random, p_mcts, rounds, 8000, false);
 
-        //GameResult result = server.playGameAI(p_random, p_minmax, 60000, false);
-        //System.out.println(result);
+        GameResult result = server.playGameAI(p_random, p_mcts, 60000, false);
+        System.out.println(result);
 
-        server.tweakParams(10);
+//        server.tweakParams(10);
 
     }
 
