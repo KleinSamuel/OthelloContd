@@ -1,5 +1,7 @@
 package utils;
 
+import szte.mi.Move;
+
 public class Utils {
 
     public static String printLong(long l){
@@ -13,29 +15,29 @@ public class Utils {
         return out;
     }
 
-    public static Coordinate positionToCoordinate(int pos){
-        return new Coordinate(7-(pos/8), 7-(pos%8));
+    public static Move positionToMove(int pos){
+        return new Move(7-(pos/8), 7-(pos%8));
     }
 
-    public static int coordinateToPosition(int x, int y){
-        return coordinateToPosition(new Coordinate(x, y));
+    public static int moveToPosition(int x, int y){
+        return moveToPosition(new Move(x, y));
     }
 
-    public static int coordinateToPosition(Coordinate c){
+    public static int moveToPosition(Move c){
         return 63-(c.x * 8) - c.y;
     }
 
     public static long positionToLong(int pos){
-        return 0L ^ (1L << pos);
+        return (1L << pos);
     }
 
     public static void printBoard(long black, long white){
         System.out.println("---------------------------------");
         for (int i = 63; i >= 0; i--) {
             if(((black >> i) & 1) == 1) {
-                System.out.print("| X ");
+                System.out.print("| 1 ");
             }else if(((white >> i) & 1) == 1){
-                System.out.print("| O ");
+                System.out.print("| 2 ");
             }else{
                 System.out.print("|   ");
             }

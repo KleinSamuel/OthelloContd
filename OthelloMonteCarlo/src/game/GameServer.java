@@ -1,37 +1,39 @@
-package version2;
+package game;
 
-import armin.ai.BirinciAI;
-//import old.OthelloAI2;
-import szte.mi.mi.Move;
-import szte.mi.mi.Player;
+import ai.AI_MCTS;
+import ai.AI_Random;
+import szte.mi.Move;
+import szte.mi.Player;
 import utils.Utils;
 
 import java.util.Scanner;
 
+//import old.OthelloAI2;
+
 public class GameServer {
 
-    private Model model;
+    private Board board;
 
     public GameServer(){
         initGame();
     }
 
     public void initGame(){
-        this.model = new Model();
+        this.board = new Board();
     }
 
     public void playGameCLI(){
 
-        boolean currentPlayer = true;
+        int currentPlayer = 1;
 
-        while(!model.isGameOver()){
+        while(board.isGameOver() == -1){
 
             System.out.println("###");
 
-            PossibleMoves pMoves = new PossibleMoves(currentPlayer, model.BOARD_BLACK, model.BOARD_WHITE);
+            PossibleMoves pMoves = new PossibleMoves(currentPlayer, board.BOARD_BLACK, board.BOARD_WHITE);
 
-            Utils.printBoardWithMoves(model.BOARD_BLACK, model.BOARD_WHITE, pMoves.moves);
-            System.out.println("Current Player: "+(currentPlayer ? "BLACK" : "WHITE"));
+            Utils.printBoardWithMoves(board.BOARD_BLACK, board.BOARD_WHITE, pMoves.moves);
+            System.out.println("Current Player: "+(currentPlayer==1 ? "BLACK" : "WHITE"));
             System.out.println(Utils.printLong(pMoves.moves));
             System.out.println("Possible Moves:");
             pMoves.printMoves();
@@ -44,16 +46,16 @@ public class GameServer {
 
             System.out.println("Entered Move: ["+x+","+y+"]");
 
-            if(!model.makeMove(currentPlayer, x, y)){
+            if(!board.makeMove(currentPlayer, x, y)){
                 System.out.println("ILLEGAL MOVE!");
                 continue;
             }
 
-            currentPlayer = !currentPlayer;
+            currentPlayer = 3 - currentPlayer;
         }
 
         System.out.println("### GAME OVER ###");
-        GameResult result = model.determineWinner();
+        GameResult result = board.determineWinner();
         System.out.println(result.toString());
 
     }
@@ -62,7 +64,7 @@ public class GameServer {
 
         initGame();
 
-        boolean black = true;
+        int color = 1;
         Move prevMove = null;
 
         long time_player_1 = timePerGame;
@@ -73,16 +75,16 @@ public class GameServer {
 
         if(!quiet){
             System.out.println("## STARTED GAME ##");
-            model.printCurrentBoard();
+            board.printCurrentBoard();
             System.out.println("## ##\n");
         }
 
         /* 0: game ended normally; 1: player1 timeout; 2: player2 timeout; 3: player1 illegal move; 4: player2 illegal move */
         int status = 0;
 
-        while(!model.isGameOver()){
+        while(board.isGameOver() == -1){
 
-            if(black){
+            if(color == 1){
                 long start = System.currentTimeMillis();
                 prevMove = p1.nextMove(prevMove, time_player_2, time_player_1);
                 long timeNeeded = System.currentTimeMillis()-start;
@@ -105,11 +107,11 @@ public class GameServer {
                 }
             }
 
-            PossibleMoves serverMoves = new PossibleMoves(black, model.BOARD_BLACK, model.BOARD_WHITE);
+            PossibleMoves serverMoves = new PossibleMoves(color, board.BOARD_BLACK, board.BOARD_WHITE);
 
             if(!quiet){
                 System.out.println("## NEW TURN ##");
-                System.out.println("Current Player:\t"+(black ? "BLACK" : "WHITE"));
+                System.out.println("Current Player:\t"+(color==1 ? "BLACK" : "WHITE"));
                 System.out.println("Possible Moves:");
                 serverMoves.printMoves();
                 System.out.println("Selected Move:\t"+((prevMove != null) ? "["+prevMove.x+","+prevMove.y+"]" : "No Move Selected"));
@@ -117,32 +119,32 @@ public class GameServer {
 
 
             if(prevMove != null){
-                int movePos = Utils.coordinateToPosition(prevMove.x, prevMove.y);
+                int movePos = Utils.moveToPosition(prevMove.x, prevMove.y);
                 if(!serverMoves.results.containsKey(movePos)){
-                    status = black ? 3 : 4;
+                    status = color==1 ? 3 : 4;
                     break;
                 }else{
-                    model.makeMove(black, prevMove.x, prevMove.y);
+                    board.makeMove(color, prevMove.x, prevMove.y);
                 }
             }else if(serverMoves.results.size() > 0){
-                status = black ? 3 : 4;
+                status = color==1 ? 3 : 4;
                 break;
             }
 
             if(!quiet){
                 System.out.println("## CURRENT BOARD STATE ##");
-                model.printCurrentBoard();
+                board.printCurrentBoard();
                 System.out.println("## END OF TURN ##");
             }
 
-            black = !black;
+            color = 3 - color;
         }
 
         GameResult result = null;
 
         switch(status){
             case 0:
-                result = model.determineWinner();
+                result = board.determineWinner();
                 break;
             case 1:
                 result = new GameResult(2, -1,1);
@@ -345,25 +347,21 @@ public class GameServer {
 
     public static void main(String[] args) throws InterruptedException {
 
-        Integer rounds = 100;
+        Integer rounds = 10;
 //        rounds = Integer.parseInt(args[0]);
 
         GameServer server = new GameServer();
-//
-        Player p_random = new RandomTest();
-//        Player p_greedy = new AI_Greedy();
-//        Player p_greedy2 = new AI_Greedy();
-//        Player p_matrix = new AI_Matrix();
-////        Player p_best = new OthelloAI2();
-//        Player p_minmax = new AI_MinMax();
-        Player p_mcts = new BirinciAI();
 
-        server.startGameSeries(p_mcts, p_random, rounds, 8000, false);
-//
-//        GameResult result = server.playGameAI(p_mcts, p_random, 8000, false);
-//        System.out.println(result);
+        Player p_random = new AI_Random();
+        Player p_random2 = new AI_Random();
+        Player p_mcts = new AI_MCTS();
 
-//        server.tweakParams(10);
+//        server.startGameSeries(p_mcts, p_random, rounds, 8000, false);
+
+//        GameResult result = server.playGameAI(p_random, p_mcts, 8000, false);
+
+        GameResult result = server.playGameAI(p_mcts, p_random, 8000, false);
+        System.out.println(result);
 
     }
 

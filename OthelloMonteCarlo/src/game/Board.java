@@ -26,28 +26,19 @@ public class Board {
         this.BOARD_WHITE = 68853694464L;
     }
 
-    public boolean makeMove(int playerBlack, int x, int y, boolean info) {
-        if (playerBlack == 1) {
-            return makeMove(true, x, y, info);
-        } else {
-            return makeMove(false, x, y, info);
-        }
-    }
+    public boolean makeMove(int color, int x, int y){
+        PossibleMoves pMoves = new PossibleMoves(color, BOARD_BLACK, BOARD_WHITE);
 
-    public boolean makeMove(boolean playerBlack, int x, int y, boolean info){
-        if (info)playerBlack = !playerBlack;
-        PossibleMoves pMoves = new PossibleMoves(playerBlack, BOARD_BLACK, BOARD_WHITE);
-
-        int currentPos = Utils.coordinateToPosition(x, y);
+        int currentPos = Utils.moveToPosition(x, y);
 
         /* check if move is legal */
         if(((pMoves.moves >> currentPos) & 1) != 1){
-//            if (info)System.out.println("info: " + playerBlack + " x " + x+ " y " + y);
+            System.out.println("info: " + color + "cant make move, x " + x+ " y " + y);         //FIXME testing purposes
             return false;
         }
 
-        long playerChips = (playerBlack) ? BOARD_BLACK : BOARD_WHITE;
-        long otherChips = (playerBlack) ? BOARD_WHITE : BOARD_BLACK;
+        long playerChips = (color == 1) ? BOARD_BLACK : BOARD_WHITE;
+        long otherChips = (color == 1) ? BOARD_WHITE : BOARD_BLACK;
 
         /* set chip at position */
         playerChips = playerChips ^ Utils.positionToLong(currentPos);
@@ -58,13 +49,11 @@ public class Board {
         otherChips = otherChips ^ toFlip;
 
         /* update main chips */
-        BOARD_BLACK = (playerBlack) ? playerChips : otherChips;
-        BOARD_WHITE = (playerBlack) ? otherChips : playerChips;
+        BOARD_BLACK = (color == 1) ? playerChips : otherChips;
+        BOARD_WHITE = (color == 1) ? otherChips : playerChips;
 
         return true;
     }
-
-
 
     public boolean isBoardFull(){
         return ((this.BOARD_BLACK | this.BOARD_WHITE) == -1);
@@ -73,13 +62,15 @@ public class Board {
     public int isGameOver(){
         /* check if board is full */
         if(isBoardFull()){
-            return (3 % (determineWinner().winner+1));
+            return determineWinner().winner;
         }
+
         /* check if both players are out of moves */
         PossibleMoves pMovesBlack = new PossibleMoves(true, this.BOARD_BLACK, this.BOARD_WHITE);
         PossibleMoves pMovesWhite = new PossibleMoves(false, this.BOARD_BLACK, this.BOARD_WHITE);
+
         if (pMovesBlack.results.size() == 0 && pMovesWhite.results.size() == 0) {
-            return (3 % (determineWinner().winner+1));
+            return determineWinner().winner;
         } else {
             return -1;
         }

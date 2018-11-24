@@ -1,8 +1,10 @@
-package version2;
+package ai;
 
-import szte.mi.mi.Move;
-import szte.mi.mi.Player;
-import utils.Coordinate;
+
+import game.Board;
+import game.PossibleMoves;
+import szte.mi.Move;
+import szte.mi.Player;
 import utils.Utils;
 
 import java.util.ArrayList;
@@ -10,14 +12,14 @@ import java.util.Random;
 
 public class AI_Random implements Player {
 
-    private boolean black;
-    private Model model;
+    private int color;
+    private Board board;
     private Random rand;
 
     @Override
     public void init(int order, long t, Random rnd) {
-        this.black = (order == 0);
-        this.model = new Model();
+        this.color = order+1;
+        this.board = new Board();
         this.rand = new Random();
     }
 
@@ -26,20 +28,20 @@ public class AI_Random implements Player {
 
         updateChips(prevMove);
 
-        PossibleMoves pMoves = new PossibleMoves(black, model.BOARD_BLACK, model.BOARD_WHITE);
+        PossibleMoves pMoves = new PossibleMoves(color, board.BOARD_BLACK, board.BOARD_WHITE);
 
         ArrayList<Integer> moveList = new ArrayList<>();
         moveList.addAll(pMoves.results.keySet());
 
         if(moveList.size() > 1) {
             int selectedMove = moveList.get(rand.nextInt(moveList.size() - 1));
-            Coordinate coord = Utils.positionToCoordinate(selectedMove);
-            model.makeMove(black, coord.x, coord.y);
+            Move coord = Utils.positionToMove(selectedMove);
+            board.makeMove(color, coord.x, coord.y);
             return new Move(coord.x, coord.y);
         }else if(moveList.size() == 1){
             int selectedMove = moveList.get(0);
-            Coordinate coord = Utils.positionToCoordinate(selectedMove);
-            model.makeMove(black, coord.x, coord.y);
+            Move coord = Utils.positionToMove(selectedMove);
+            board.makeMove(color, coord.x, coord.y);
             return new Move(coord.x, coord.y);
         }else{
             return null;
@@ -50,7 +52,7 @@ public class AI_Random implements Player {
         if(enemyMove == null){
             return;
         }
-        model.makeMove(!black, enemyMove.x, enemyMove.y);
+        board.makeMove(3 - color, enemyMove.x, enemyMove.y);
     }
 
 }

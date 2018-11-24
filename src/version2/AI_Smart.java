@@ -1,7 +1,7 @@
 package version2;
 
-import szte.mi.Move;
-import szte.mi.Player;
+import szte.mi.mi.Move;
+import szte.mi.mi.Player;
 
 import java.util.Random;
 

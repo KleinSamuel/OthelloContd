@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="OthelloMonteCarlo:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/OthelloMonteCarlo_jar</output-path>
+    <root id="archive" name="OthelloMonteCarlo.jar">
+      <element id="module-output" name="OthelloMonteCarlo" />
+      <element id="module-source" name="OthelloMonteCarlo" />
+      <element id="file-copy" path="$PROJECT_DIR$/OthelloMonteCarlo/src/ai/player.txt" />
+    </root>
+  </artifact>
+</component>

@@ -1,6 +1,6 @@
 package game;
 
-import utils.Coordinate;
+import szte.mi.Move;
 import utils.Utils;
 
 import java.util.HashMap;
@@ -50,7 +50,7 @@ public class PossibleMoves {
 
     public void printMoves(){
         for(Integer i : results.keySet()){
-            Coordinate c = Utils.positionToCoordinate(i);
+            Move c = Utils.positionToMove(i);
             System.out.println("["+c.x+","+c.y+"]");
         }
     }

@@ -2,25 +2,38 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="Othello:jar" />
+      <artifact name="OthelloMonteCarlo:jar" />
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1296c8e9-8e4b-4026-9b24-7fff1ec5079a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/OthelloMonteCarlo/src/game/Board.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OthelloMonteCarlo/src/game/GameResult.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OthelloMonteCarlo/src/game/PositionCheckResult.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OthelloMonteCarlo/src/game/PossibleMoves.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OthelloMonteCarlo/src/utils/Coordinate.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OthelloMonteCarlo/src/utils/Printer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OthelloMonteCarlo/src/utils/Utils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/version2/AI_Greedy.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/version2/AI_Matrix.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/version2/AI_MinMax.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/version2/AI_Random.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/version2/AI_Smart.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/OthelloMonteCarlo_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/OthelloMonteCarlo/src/META-INF/MANIFEST.MF" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/OthelloMonteCarlo/src/ai/AI_MCTS.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/OthelloMonteCarlo/src/ai/AI_Random.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/OthelloMonteCarlo/src/ai/player.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/OthelloMonteCarlo/src/game/GameServer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/OthelloMonteCarlo/src/mct/MonteCarloTreeSearch.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/OthelloMonteCarlo/src/szte/mi/Move.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/OthelloMonteCarlo/src/szte/mi/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OthelloMonteCarlo/src/ai/Player.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OthelloMonteCarlo/src/game/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/OthelloMonteCarlo/src/game/Board.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OthelloMonteCarlo/src/game/PositionCheckResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/OthelloMonteCarlo/src/game/PositionCheckResult.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OthelloMonteCarlo/src/game/PossibleMoves.java" beforeDir="false" afterPath="$PROJECT_DIR$/OthelloMonteCarlo/src/game/PossibleMoves.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/OthelloMonteCarlo/src/mct/State.java" beforeDir="false" afterPath="$PROJECT_DIR$/OthelloMonteCarlo/src/mct/State.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OthelloMonteCarlo/src/utils/Coordinate.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OthelloMonteCarlo/src/utils/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/OthelloMonteCarlo/src/utils/Utils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/armin/ai/BirinciAI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/armin/ai/BirinciAI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/szte/mi/Move.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/szte/mi/mi/Move.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/szte/mi/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/szte/mi/mi/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/version2/AI_Greedy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/version2/AI_Greedy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/version2/AI_Matrix.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/version2/AI_Matrix.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/version2/AI_MinMax.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/version2/AI_MinMax.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/version2/AI_Random.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/version2/AI_Random.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/version2/AI_Smart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/version2/AI_Smart.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/version2/GameServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/version2/GameServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/version2/RandomTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/version2/RandomTest.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -28,6 +41,12 @@
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/OthelloContd$GameServer_OMC.ic" NAME="GameServer OMC Coverage Results" MODIFIED="1543093109665" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+  </component>
+  <component name="CoverageViewManager">
+    <option name="myElementSize" value="270" />
   </component>
   <component name="FUSProjectUsageTrigger">
     <session id="-696360335">
@@ -41,14 +60,14 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="java" value="58" />
-          <entry key="txt" value="2" />
+          <entry key="java" value="73" />
+          <entry key="txt" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="JAVA" value="58" />
-          <entry key="PLAIN_TEXT" value="2" />
+          <entry key="JAVA" value="73" />
+          <entry key="PLAIN_TEXT" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages">
@@ -58,15 +77,15 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="dummy" value="18" />
-          <entry key="java" value="2835" />
-          <entry key="txt" value="256" />
+          <entry key="dummy" value="26" />
+          <entry key="java" value="3650" />
+          <entry key="txt" value="372" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="2835" />
-          <entry key="PLAIN_TEXT" value="274" />
+          <entry key="JAVA" value="3650" />
+          <entry key="PLAIN_TEXT" value="398" />
         </counts>
       </usages-collector>
     </session>
@@ -74,10 +93,24 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/OthelloMonteCarlo/src/mct/Node.java">
+        <entry file="file://$PROJECT_DIR$/OthelloMonteCarlo/src/mct/MonteCarloTreeSearch.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
-              <caret line="30" column="48" lean-forward="true" selection-start-line="30" selection-start-column="48" selection-end-line="30" selection-end-column="48" />
+            <state relative-caret-position="229">
+              <caret line="38" column="48" selection-start-line="38" selection-start-column="48" selection-end-line="38" selection-end-column="48" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#205#206#0" expanded="true" />
+                <element signature="e#235#236#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/OthelloMonteCarlo/src/ai/AI_MCTS.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="289">
+              <caret line="43" column="67" lean-forward="true" selection-start-line="43" selection-start-column="67" selection-end-line="43" selection-end-column="67" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -86,10 +119,27 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/OthelloMonteCarlo/src/mct/State.java">
+        <entry file="file://$PROJECT_DIR$/OthelloMonteCarlo/src/game/GameServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1368">
-              <caret line="100" column="16" lean-forward="true" selection-start-line="100" selection-start-column="16" selection-end-line="100" selection-end-column="16" />
+            <state relative-caret-position="292">
+              <caret line="361" lean-forward="true" selection-start-line="361" selection-end-line="361" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#297#298#0" expanded="true" />
+                <element signature="e#337#338#0" expanded="true" />
+                <element signature="method#playGameCLI#0;class#GameServer#0" />
+                <element signature="e#10199#10248#0" />
+                <element signature="method#printQuiet#0;class#GameServer#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/OthelloMonteCarlo/src/ai/AI_Random.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="33">
+              <caret line="33" column="49" lean-forward="true" selection-start-line="33" selection-start-column="49" selection-end-line="33" selection-end-column="49" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -98,28 +148,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/OthelloMonteCarlo/src/game/PossibleMoves.java">
+        <entry file="file://$PROJECT_DIR$/OthelloMonteCarlo/src/ai/player.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-738">
-              <caret line="28" column="43" selection-start-line="28" selection-start-column="32" selection-end-line="28" selection-end-column="43" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/OthelloMonteCarlo/src/game/Board.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="414">
-              <caret line="40" column="7" lean-forward="true" selection-start-line="40" selection-start-column="7" selection-end-line="40" selection-end-column="7" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/OthelloMonteCarlo/src/game/GameResult.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="486">
-              <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
+            <state>
+              <caret column="10" lean-forward="true" selection-start-column="10" selection-end-column="10" />
             </state>
           </provider>
         </entry>
@@ -162,11 +194,22 @@
         <option value="$PROJECT_DIR$/OthelloMonteCarlo/src/mct/UCT.java" />
         <option value="$PROJECT_DIR$/OthelloMonteCarlo/src/mct/Node.java" />
         <option value="$PROJECT_DIR$/OthelloMonteCarlo/src/ai/AI_Greedy.java" />
-        <option value="$PROJECT_DIR$/OthelloMonteCarlo/src/game/Board.java" />
-        <option value="$PROJECT_DIR$/OthelloMonteCarlo/src/game/PossibleMoves.java" />
-        <option value="$PROJECT_DIR$/OthelloMonteCarlo/src/game/PositionCheckResult.java" />
-        <option value="$PROJECT_DIR$/OthelloMonteCarlo/src/mct/State.java" />
         <option value="$PROJECT_DIR$/OthelloMonteCarlo/src/game/GameResult.java" />
+        <option value="$PROJECT_DIR$/OthelloMonteCarlo/src/mi/Player.java" />
+        <option value="$PROJECT_DIR$/OthelloMonteCarlo/src/szte/mi/Move.java" />
+        <option value="$PROJECT_DIR$/OthelloMonteCarlo/src/szte/mi/Player.java" />
+        <option value="$PROJECT_DIR$/OthelloMonteCarlo/src/ai/MctsAI.java" />
+        <option value="$PROJECT_DIR$/OthelloMonteCarlo/src/utils/Utils.java" />
+        <option value="$PROJECT_DIR$/OthelloMonteCarlo/src/game/PossibleMoves.java" />
+        <option value="$PROJECT_DIR$/OthelloMonteCarlo/src/ai/AI_Random.java" />
+        <option value="$PROJECT_DIR$/OthelloMonteCarlo/src/game/Board.java" />
+        <option value="$PROJECT_DIR$/OthelloMonteCarlo/src/mct/State.java" />
+        <option value="$PROJECT_DIR$/OthelloMonteCarlo/src/game/PositionCheckResult.java" />
+        <option value="$PROJECT_DIR$/OthelloMonteCarlo/src/ai/Player.txt" />
+        <option value="$PROJECT_DIR$/OthelloMonteCarlo/src/game/GameServer.java" />
+        <option value="$PROJECT_DIR$/OthelloMonteCarlo/src/mct/MonteCarloTreeSearch.java" />
+        <option value="$PROJECT_DIR$/OthelloMonteCarlo/src/ai/AI_MCTS.java" />
+        <option value="$PROJECT_DIR$/OthelloMonteCarlo/src/ai/player.txt" />
       </list>
     </option>
   </component>
@@ -232,24 +275,19 @@
               <item name="OthelloContd" type="462c0819:PsiDirectoryNode" />
               <item name="OthelloMonteCarlo" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="utils" type="462c0819:PsiDirectoryNode" />
+              <item name="mi" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="OthelloContd" type="b2602c69:ProjectViewProjectNode" />
               <item name="OthelloContd" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="OthelloContd" type="b2602c69:ProjectViewProjectNode" />
-              <item name="OthelloContd" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="ai" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="OthelloContd" type="b2602c69:ProjectViewProjectNode" />
-              <item name="OthelloContd" type="462c0819:PsiDirectoryNode" />
+              <item name="OthelloMonteCarlo" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="utils" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="OthelloContd" type="b2602c69:ProjectViewProjectNode" />
+              <item name="OthelloContd" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="OthelloContd" type="b2602c69:ProjectViewProjectNode" />
@@ -266,7 +304,8 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543089696033" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543098122896" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/OthelloMonteCarlo/src/ai/Player.txt" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="/usr/bin/node" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Artifacts" />
@@ -275,7 +314,10 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="ai" />
       <recent name="game" />
+      <recent name="szte.mi" />
+      <recent name="mct" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/OthelloMonteCarlo/src" />
@@ -297,9 +339,9 @@
     </option>
   </component>
   <component name="RunManager">
-    <configuration name="Unnamed" type="Application" factoryName="Application">
-      <option name="MAIN_CLASS_NAME" value="version2.GameServer" />
-      <module name="OthelloContd" />
+    <configuration name="GameServer OMC" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="game.GameServer" />
+      <module name="OthelloMonteCarlo" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -316,7 +358,7 @@
       <option name="presentableId" value="Default" />
       <updated>1542925765938</updated>
       <workItem from="1542925774098" duration="33602000" />
-      <workItem from="1543084240980" duration="5330000" />
+      <workItem from="1543084240980" duration="11092000" />
     </task>
     <task id="LOCAL-00001" summary="Added MonteCarloTreeSearch&#10;Problems:&#10;-does not recognize it should swap players??">
       <created>1542937108304</created>
@@ -360,15 +402,21 @@
       <option name="project" value="LOCAL" />
       <updated>1543087436841</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="preparing for big change">
+      <created>1543089797728</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1543089797728</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="38932000" />
+    <option name="totallyTimeSpent" value="44694000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1920" y="0" width="1920" height="1172" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" x="1482" y="101" width="426" height="1035" id="Project" order="0" type="FLOATING" visible="true" weight="0.24973261" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -379,16 +427,17 @@
       <window_info id="Image Layers" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32911393" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.38753653" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.4070107" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" order="8" weight="0.32911393" />
+      <window_info anchor="bottom" id="Messages" order="8" weight="0.2278481" />
       <window_info anchor="bottom" id="Terminal" order="9" />
       <window_info anchor="bottom" id="Version Control" order="10" weight="0.32911393" />
       <window_info anchor="bottom" id="Database Changes" order="11" show_stripe_button="false" />
+      <window_info anchor="right" id="Coverage" side_tool="true" weight="0.32994652" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -410,7 +459,9 @@
     <MESSAGE value="Added MonteCarloTreeSearch&#10;Problems:&#10;-does not recognize it should swap players??" />
     <MESSAGE value="Added MonteCarloTreeSearch&#10;Problems:&#10;-need to see what the problem with player swap is&#10;-this might also solve the problem of bad endgame, its like i search for a world to lose in" />
     <MESSAGE value="init" />
-    <option name="LAST_COMMIT_MESSAGE" value="init" />
+    <MESSAGE value="preparing for big change" />
+    <MESSAGE value="Reworked some code, mcts working fine now without hacks" />
+    <option name="LAST_COMMIT_MESSAGE" value="Reworked some code, mcts working fine now without hacks" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/version2/AI_Smart.java" />
@@ -546,35 +597,8 @@
     <entry file="file://$PROJECT_DIR$/OthelloMonteCarlo/src/mct/Tree.java">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/OthelloMonteCarlo/src/ai/Player.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/OthelloMonteCarlo/src/mct/Node.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="30" column="48" lean-forward="true" selection-start-line="30" selection-start-column="48" selection-end-line="30" selection-end-column="48" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/OthelloMonteCarlo/src/ai/AI_Greedy.java">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/OthelloMonteCarlo/src/ai/AI_Random.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/version2/AI_Greedy.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="20" column="33" lean-forward="true" selection-start-line="20" selection-start-column="33" selection-end-line="20" selection-end-column="33" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/mct/Node.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -587,9 +611,6 @@
           </folding>
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/OthelloMonteCarlo/src/utils/Utils.java">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/OthelloMonteCarlo/src/utils/Coordinate.java">
       <provider selected="true" editor-type-id="text-editor" />
@@ -605,23 +626,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="72">
           <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/OthelloMonteCarlo/src/game/PositionCheckResult.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/OthelloMonteCarlo/src/mct/State.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1368">
-          <caret line="100" column="16" lean-forward="true" selection-start-line="100" selection-start-column="16" selection-end-line="100" selection-end-column="16" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -649,20 +653,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/OthelloMonteCarlo/src/game/GameResult.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="486">
-          <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/OthelloMonteCarlo/src/game/Board.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="40" column="7" lean-forward="true" selection-start-line="40" selection-start-column="7" selection-end-line="40" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/OthelloMonteCarlo/src/mct/UCT.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="378">
@@ -677,10 +667,154 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/OthelloMonteCarlo/src/mi/Move.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/OthelloMonteCarlo/src/mi/Player.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="26" column="25" lean-forward="true" selection-start-line="26" selection-start-column="25" selection-end-line="26" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/version2/AI_Greedy.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="20" column="33" lean-forward="true" selection-start-line="20" selection-start-column="33" selection-end-line="20" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/OthelloMonteCarlo/src/mct/Node.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="249">
+          <caret line="30" column="48" lean-forward="true" selection-start-line="30" selection-start-column="48" selection-end-line="30" selection-end-column="48" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/OthelloMonteCarlo/src/szte/mi/Player.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="33" column="58" lean-forward="true" selection-start-line="33" selection-start-column="58" selection-end-line="33" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/OthelloMonteCarlo/src/mct/State.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1110">
+          <caret line="78" column="9" lean-forward="true" selection-start-line="78" selection-start-column="9" selection-end-line="78" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/OthelloMonteCarlo/src/game/PositionCheckResult.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="15" column="64" selection-start-line="15" selection-start-column="64" selection-end-line="15" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/OthelloMonteCarlo/src/utils/Utils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="17" column="43" selection-start-line="17" selection-start-column="43" selection-end-line="17" selection-end-column="43" />
+          <folding>
+            <element signature="method#printBoardWithMoves#0;class#Utils#0" />
+            <element signature="method#printMoves#0;class#Utils#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/OthelloMonteCarlo/src/game/GameServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="292">
+          <caret line="361" lean-forward="true" selection-start-line="361" selection-end-line="361" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#297#298#0" expanded="true" />
+            <element signature="e#337#338#0" expanded="true" />
+            <element signature="method#playGameCLI#0;class#GameServer#0" />
+            <element signature="e#10199#10248#0" />
+            <element signature="method#printQuiet#0;class#GameServer#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/OthelloMonteCarlo/src/szte/mi/Move.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/OthelloMonteCarlo/src/ai/AI_MCTS.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="43" column="67" lean-forward="true" selection-start-line="43" selection-start-column="67" selection-end-line="43" selection-end-column="67" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/OthelloMonteCarlo/src/game/Board.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1062">
+          <caret line="61" column="15" selection-start-line="61" selection-start-column="15" selection-end-line="61" selection-end-column="15" />
+          <folding>
+            <element signature="e#1934#1935#0" expanded="true" />
+            <element signature="e#2002#2003#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/OthelloMonteCarlo/src/game/GameResult.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="486">
+          <caret line="27" selection-start-line="27" selection-end-line="27" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/OthelloMonteCarlo/src/game/PossibleMoves.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-738">
-          <caret line="28" column="43" selection-start-line="28" selection-start-column="32" selection-end-line="28" selection-end-column="43" />
+        <state relative-caret-position="468">
+          <caret line="26" column="5" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/OthelloMonteCarlo/src/ai/AI_Random.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="33">
+          <caret line="33" column="49" lean-forward="true" selection-start-line="33" selection-start-column="49" selection-end-line="33" selection-end-column="49" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/OthelloMonteCarlo/src/mct/MonteCarloTreeSearch.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="229">
+          <caret line="38" column="48" selection-start-line="38" selection-start-column="48" selection-end-line="38" selection-end-column="48" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#205#206#0" expanded="true" />
+            <element signature="e#235#236#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/OthelloMonteCarlo/src/ai/player.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="10" lean-forward="true" selection-start-column="10" selection-end-column="10" />
         </state>
       </provider>
     </entry>
@@ -690,7 +824,7 @@
       <state key="ArtifactsStructureConfigurable.UI">
         <settings>
           <artifact-editor />
-          <last-edited>Othello:jar</last-edited>
+          <last-edited>OthelloMonteCarlo:jar</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -743,7 +877,6 @@
             <option name="proportions">
               <list>
                 <option value="0.2" />
-                <option value="0.6" />
               </list>
             </option>
           </splitter-proportions>

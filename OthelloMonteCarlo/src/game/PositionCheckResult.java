@@ -13,6 +13,6 @@ public class PositionCheckResult {
 
     @Override
     public String toString(){
-        return "<PositionCheckResult: "+ Utils.positionToCoordinate(pos)+">";
+        return "<PositionCheckResult: "+ Utils.positionToMove(pos)+">";
     }
 }
