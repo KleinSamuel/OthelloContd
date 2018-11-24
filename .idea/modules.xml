@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/OthelloContd.iml" filepath="$PROJECT_DIR$/OthelloContd.iml" />
+      <module fileurl="file://$PROJECT_DIR$/OthelloMonteCarlo/OthelloMonteCarlo.iml" filepath="$PROJECT_DIR$/OthelloMonteCarlo/OthelloMonteCarlo.iml" />
+    </modules>
+  </component>
+</project>
