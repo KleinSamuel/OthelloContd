@@ -61,12 +61,20 @@ public class MoveFactory {
      */
     public static long[] setChip(int pos, boolean black, long BOARD_BLACK, long BOARD_WHITE){
 
-        long toFlip = getChipsToFlip(pos, BOARD_BLACK, BOARD_WHITE);
+        long toFlip = getChipsToFlip(pos, black ? BOARD_BLACK : BOARD_WHITE, black ? BOARD_WHITE : BOARD_BLACK);
 
-        long own = BOARD_BLACK | (1L << pos) | toFlip;
-        long other = BOARD_WHITE ^ toFlip;
+        long new_black;
+        long new_white;
 
-        return new long[]{own, other};
+        if(black) {
+            new_black = BOARD_BLACK | (1L << pos) | toFlip;
+            new_white = BOARD_WHITE ^ toFlip;
+        }else {
+            new_black = BOARD_BLACK ^ toFlip;
+            new_white = BOARD_WHITE | (1L << pos) | toFlip;
+        }
+
+        return new long[]{new_black, new_white};
     }
 
     /**

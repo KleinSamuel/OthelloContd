@@ -1,11 +1,12 @@
 package version2;
 
-import old.OthelloAI2;
 import szte.mi.Move;
 import szte.mi.Player;
 import utils.Utils;
 
 import java.util.Scanner;
+
+import old.OthelloAI2;
 
 public class GameServer {
 
@@ -144,18 +145,21 @@ public class GameServer {
                 result = model.determineWinner();
                 break;
             case 1:
-                result = new GameResult(2, -1,1);
+                result = new GameResult(1, -1, 1);
                 break;
             case 2:
-                result = new GameResult(1, -1, 2);
+                result = new GameResult(0, -1, 2);
                 break;
             case 3:
-                result = new GameResult(2, 1, -1);
+                result = new GameResult(1, 1, -1);
                 break;
             case 4:
-                result = new GameResult(1, 2, -1);
+                result = new GameResult(0, 2, -1);
                 break;
         }
+
+        result.timeBlack = time_player_1;
+        result.timeWhite = time_player_2;
 
         return result;
 
@@ -169,7 +173,7 @@ public class GameServer {
             System.out.println("### ### ### ### ### ### ### ### ### ### ### ### ###\n");
 
             System.out.println("## Settings ##");
-            System.out.println("Rounds:\t\t\t\t" + (roundsPerSide * 2));
+            System.out.println("Rounds:\t\t\t" + (roundsPerSide * 2));
             System.out.println("Time per Game:\t\t" + timePerGame + " ms");
             System.out.println("## ## ## ## ##\n");
 
@@ -303,7 +307,7 @@ public class GameServer {
 
         float start = 0f;
         float end = 1f;
-        float step = 0.25f;
+        float step = 0.5f;
 
         for (float w_1 = start; w_1 <= end; w_1+=step) {
             for (float w_2 = start; w_2 <= end; w_2+=step) {
@@ -313,16 +317,16 @@ public class GameServer {
                         int wins = 0;
 
                         Player a_1 = new AI_MinMax(3, new float[]{w_1, w_2, w_3, w_4});
-                        Player a_2 = new AI_Random();
+                        Player a_2 = new OthelloAI2();
 
                         for (int i = 0; i < roundsPerSide; i++) {
-                            GameResult result = playGameAI(a_1, a_2, 20000, true);
+                            GameResult result = playGameAI(a_1, a_2, 60000, true);
                             if(result.winner == 0){
                                 wins++;
                             }
                         }
                         for (int i = 0; i < roundsPerSide; i++) {
-                            GameResult result = playGameAI(a_2, a_1, 20000, true);
+                            GameResult result = playGameAI(a_2, a_1, 60000, true);
                             if(result.winner == 1){
                                 wins++;
                             }
@@ -342,23 +346,23 @@ public class GameServer {
         }
     }
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args){
 
         GameServer server = new GameServer();
 
         Player p_random = new AI_Random();
         Player p_greedy = new AI_Greedy();
-        Player p_greedy2 = new AI_Greedy();
         Player p_matrix = new AI_Matrix();
-        Player p_best = new OthelloAI2();
-        Player p_minmax = new AI_MinMax();
+        Player p_minmax = new AI_MinMax(5);
 
-        //server.startGameSeries(p_random, p_minmax, 50, 60000, true);
+        server.startGameSeries(p_random, p_greedy, 3, 4000, false);
 
-        //GameResult result = server.playGameAI(p_random, p_minmax, 60000, false);
-        //System.out.println(result);
+//        GameResult result = server.playGameAI(p_minmax, p_random, 8000, true);
+//        System.out.println(result);
+//        System.out.println("Time Black: "+result.timeBlack);
+//        System.out.println("Time White: "+result.timeWhite);
 
-        server.tweakParams(10);
+//        server.tweakParams(10);
 
     }
 

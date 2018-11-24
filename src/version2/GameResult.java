@@ -6,6 +6,8 @@ public class GameResult {
     int white;
     int illegalMove = -1;
     int timeout = -1;
+    long timeBlack;
+    long timeWhite;
 
     public GameResult(int winner, int illegalMove, int timeout){
         this.winner = winner;
