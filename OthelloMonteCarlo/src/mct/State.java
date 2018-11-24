@@ -1,8 +1,9 @@
 package mct;
 
+import game.Board;
+import game.PossibleMoves;
 import utils.Coordinate;
 import utils.Utils;
-import version2.PossibleMoves;
 
 import java.util.ArrayList;
 import java.util.List;
