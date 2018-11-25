@@ -23,7 +23,7 @@ public class AI_MCTS implements Player {
         this.color = order + 1;
         this.board = new Board();
         this.rand = new Random();
-        this.turns=4;
+        this.turns=0;
     }
 
     @Override

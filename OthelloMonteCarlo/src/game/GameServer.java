@@ -160,7 +160,7 @@ public class GameServer {
                 break;
         }
 
-//        System.out.println("Remaining time for:\nPlayer1: " + time_player_1 + " ms\nPlayer2: " + time_player_2 + " ms");
+        System.out.println("Remaining time for:\nPlayer1: " + time_player_1 + " ms\nPlayer2: " + time_player_2 + " ms");
 
         return result;
 
@@ -353,7 +353,7 @@ public class GameServer {
     public static void main(String[] args) throws InterruptedException {
 
         Integer rounds = 10;
-        rounds = Integer.parseInt(args[0]);
+//        rounds = Integer.parseInt(args[0]);
 
         GameServer server = new GameServer();
 
@@ -361,14 +361,14 @@ public class GameServer {
         Player p_random2 = new AI_Random();
         Player p_mcts = new AI_MCTS();
 
-        server.startGameSeries(p_mcts, p_random, rounds, 4000, false);
+        server.startGameSeries(p_mcts, p_random, rounds, 8000, false);
 
 //        GameResult result = server.playGameAI(p_random, p_mcts, 8000, false);
 
 //        GameResult result = server.playGameAI(p_random, p_mcts,4000, false);
 //        System.out.println(result);
 
-//        System.out.println(counter);
+        System.out.println(counter);
 
     }
 

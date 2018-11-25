@@ -23,17 +23,28 @@ public class MonteCarloTreeSearch {
         this.level = level;
     }
 
+//    private int getMillisForCurrentLevel() {
+//        return 2 * (this.level - 1) + 1;
+//    }
+
     private int getMillisForCurrentLevel() {
-        return 2 * (this.level - 1) + 1;
+        if (level < 5) {
+            return 20;
+        } else if (level < 10) {
+            return 80;
+        } else if (level < 15) {
+            return 220;
+        } else if (level < 23) {
+            return 380;
+        } else
+            return 470;
     }
 
     public Board findNextMove(Board board, int playerNo) {
         long start = System.currentTimeMillis();
-        long end = start + 3 * getMillisForCurrentLevel();
+        long end = start + getMillisForCurrentLevel();
 
         opponent = 3 - playerNo;
-
-//        System.out.println(playerNo + " " + opponent);
 
         Tree tree = new Tree();
         Node rootNode = tree.getRoot();
@@ -44,8 +55,7 @@ public class MonteCarloTreeSearch {
         while (System.currentTimeMillis() < end) {
             // Phase 1 - Selection
             Node promisingNode = selectPromisingNode(rootNode);
-//            System.out.println("possible promissing board");
-//            promisingNode.getState().getBoard().printCurrentBoard();
+
 
             // Phase 2 - Expansion
 //            if (promisingNode.getState().getBoard().checkStatus() == Board.IN_PROGRESS)
