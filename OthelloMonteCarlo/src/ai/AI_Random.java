@@ -34,7 +34,7 @@ public class AI_Random implements Player {
         moveList.addAll(pMoves.results.keySet());
 
         if(moveList.size() > 1) {
-            int selectedMove = moveList.get(rand.nextInt(moveList.size() - 1));
+            int selectedMove = moveList.get(rand.nextInt(moveList.size()));
             Move coord = Utils.positionToMove(selectedMove);
             board.makeMove(color, coord.x, coord.y);
             return new Move(coord.x, coord.y);

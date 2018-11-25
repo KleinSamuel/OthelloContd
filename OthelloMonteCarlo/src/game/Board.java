@@ -87,6 +87,8 @@ public class Board {
                 numWhite++;
             }
         }
+//        System.out.println(numBlack + " : " + numWhite);
+        GameServer.counter++;
         return new GameResult(numBlack, numWhite);
     }
 

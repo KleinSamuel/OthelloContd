@@ -160,6 +160,8 @@ public class GameServer {
                 break;
         }
 
+//        System.out.println("Remaining time for:\nPlayer1: " + time_player_1 + " ms\nPlayer2: " + time_player_2 + " ms");
+
         return result;
 
     }
@@ -193,9 +195,9 @@ public class GameServer {
 
         for (int i = 1; i <= roundsPerSide; i++) {
             GameResult result = playGameAI(p1, p2, timePerGame,true);
-            if(result.winner == 0){
+            if(result.winner == 1){
                 h1_black++;
-            }else if(result.winner == 1){
+            }else if(result.winner == 2){
                 h1_white++;
             }else{
                 h1_draw++;
@@ -231,9 +233,9 @@ public class GameServer {
 
         for (int i = 1; i <= roundsPerSide; i++) {
             GameResult result = playGameAI(p2, p1, timePerGame,true);
-            if(result.winner == 0){
+            if(result.winner == 1){
                 h2_black++;
-            }else if(result.winner == 1){
+            }else if(result.winner == 2){
                 h2_white++;
             }else{
                 h2_draw++;
@@ -345,10 +347,13 @@ public class GameServer {
         }
     }
 
+    public static long counter = 0;
+    public static int turns = 0;
+
     public static void main(String[] args) throws InterruptedException {
 
         Integer rounds = 10;
-//        rounds = Integer.parseInt(args[0]);
+        rounds = Integer.parseInt(args[0]);
 
         GameServer server = new GameServer();
 
@@ -356,12 +361,14 @@ public class GameServer {
         Player p_random2 = new AI_Random();
         Player p_mcts = new AI_MCTS();
 
-//        server.startGameSeries(p_mcts, p_random, rounds, 8000, false);
+        server.startGameSeries(p_mcts, p_random, rounds, 4000, false);
 
 //        GameResult result = server.playGameAI(p_random, p_mcts, 8000, false);
 
-        GameResult result = server.playGameAI(p_mcts, p_random, 8000, false);
-        System.out.println(result);
+//        GameResult result = server.playGameAI(p_random, p_mcts,4000, false);
+//        System.out.println(result);
+
+//        System.out.println(counter);
 
     }
 

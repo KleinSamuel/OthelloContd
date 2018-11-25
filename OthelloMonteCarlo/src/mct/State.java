@@ -30,21 +30,20 @@ public class State {
     public List<State> getAllPossibleStates() {
         List<State> possibleStates = new ArrayList<>();
 
-        PossibleMoves pm = new PossibleMoves(playerNo, board.BOARD_BLACK, board.BOARD_WHITE);
+        PossibleMoves pm = new PossibleMoves(3 - playerNo, board.BOARD_BLACK, board.BOARD_WHITE);   //FIXME this was important
+
         List<Integer> availablePositions = new ArrayList<>();
         availablePositions.addAll(pm.results.keySet());
 
         availablePositions.forEach(p -> {
             State newState = new State(this.board);
-            newState.setPlayerNo(playerNo);
+            newState.setPlayerNo(3 - playerNo);
             Move coord = Utils.positionToMove(p);
 
             newState.getBoard().makeMove(newState.getPlayerNo(), coord.x, coord.y);
-//            newState.getBoard().performMove(newState.getPlayerNo(), p);
             possibleStates.add(newState);
         });
 
-//        possibleStates.forEach(x -> x.getBoard().printCurrentBoard());
         return possibleStates;
     }
 
@@ -64,23 +63,13 @@ public class State {
 
         Random rand = new Random();
 
-
         int totalPossibilities = availablePositions.size();
-//        int selectRandom = (int) (Math.random() * totalPossibilities);
         if (totalPossibilities > 1) {
-            int selectRandom = rand.nextInt(totalPossibilities-1) + 1;
-//        this.board.performMove(this.playerNo, availablePositions.get(selectRandom));
-
-//            System.out.println("size of available positions "+availablePositions.size());
-//            availablePositions.forEach(x -> System.out.println(Utils.positionToCoordinate(x)));
-
+            int selectRandom = rand.nextInt(totalPossibilities);
             Move coord = Utils.positionToMove(availablePositions.get(selectRandom));
             this.board.makeMove(playerNo, coord.x, coord.y);
         }
         if (totalPossibilities == 1) {
-//            System.out.println("size of available positions "+availablePositions.size());
-//            availablePositions.forEach(x -> System.out.println(Utils.positionToCoordinate(x)));
-
             Move coord = Utils.positionToMove(availablePositions.get(0));
             this.board.makeMove(playerNo, coord.x, coord.y);
         }

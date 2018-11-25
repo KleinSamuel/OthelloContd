@@ -1,6 +1,7 @@
 package ai;
 
 import game.Board;
+import game.GameServer;
 import game.PossibleMoves;
 import mct.MonteCarloTreeSearch;
 import szte.mi.Move;
@@ -15,17 +16,19 @@ public class AI_MCTS implements Player {
     private int color;
     private Board board;
     private Random rand;
+    private int turns;
 
     @Override
     public void init(int order, long t, Random rnd) {
         this.color = order + 1;
         this.board = new Board();
         this.rand = new Random();
+        this.turns=4;
     }
 
     @Override
     public Move nextMove(Move prevMove, long tOpponent, long t) {
-
+        turns+=1;
         updateChips(prevMove);
 
         PossibleMoves pMoves = new PossibleMoves(color, board.BOARD_BLACK, board.BOARD_WHITE);
@@ -33,15 +36,16 @@ public class AI_MCTS implements Player {
         ArrayList<Integer> moveList = new ArrayList<>();
         moveList.addAll(pMoves.results.keySet());
 
-        System.out.println("\nmovesList size " + moveList.size());
-        moveList.forEach(x -> {
-            System.out.println("["+Utils.positionToMove(x).x + "," + Utils.positionToMove(x).y+"]");
-        });
+//        System.out.println("\nmovesList size " + moveList.size());
+//        moveList.forEach(x -> {
+//            System.out.println("["+Utils.positionToMove(x).x + "," + Utils.positionToMove(x).y+"]");
+//        });
 //
 //        board.printCurrentBoard();
 
         if(moveList.size() > 1) {
             MonteCarloTreeSearch mcts = new MonteCarloTreeSearch();
+            mcts.setLevel(turns);
             Board res = mcts.findNextMove(board, color);
 
             if (res != null) {
@@ -58,7 +62,7 @@ public class AI_MCTS implements Player {
 
         } else if(moveList.size() == 1){
 
-            System.out.println("\nCase2: >>>>>>>>>>>>>>>>>>>>>>>> this is very bad <<<<<<<<<<<<<<<<<<<<<\n\n");
+//            System.out.println("\nCase2: >>>>>>>>>>>>>>>>>>>>>>>> this is very bad <<<<<<<<<<<<<<<<<<<<<\n\n");
 
             int selectedMove = moveList.get(0);
             Move coord = Utils.positionToMove(selectedMove);

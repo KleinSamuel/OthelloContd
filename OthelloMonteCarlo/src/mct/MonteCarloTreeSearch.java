@@ -12,7 +12,7 @@ public class MonteCarloTreeSearch {
     private int opponent;
 
     public MonteCarloTreeSearch() {
-        this.level = 3;
+        this.level = 8;
     }
 
     public int getLevel() {
@@ -29,16 +29,16 @@ public class MonteCarloTreeSearch {
 
     public Board findNextMove(Board board, int playerNo) {
         long start = System.currentTimeMillis();
-        long end = start + 50 * getMillisForCurrentLevel();
+        long end = start + 3 * getMillisForCurrentLevel();
 
         opponent = 3 - playerNo;
+
+//        System.out.println(playerNo + " " + opponent);
 
         Tree tree = new Tree();
         Node rootNode = tree.getRoot();
         rootNode.getState().setBoard(board);
-        rootNode.getState().setPlayerNo(playerNo);
-
-        System.out.println("me: " + playerNo +"\topponen: " + opponent);
+        rootNode.getState().setPlayerNo(opponent);
 
 
         while (System.currentTimeMillis() < end) {
@@ -56,7 +56,6 @@ public class MonteCarloTreeSearch {
             Node nodeToExplore = promisingNode;
             if (promisingNode.getChildArray().size() > 0) {
                 nodeToExplore = promisingNode.getRandomChildNode();
-//                nodeToExplore.getState().getBoard().printCurrentBoard();
             }
             int playoutResult = simulateRandomPlayout(nodeToExplore);
             // Phase 4 - Update
@@ -66,14 +65,10 @@ public class MonteCarloTreeSearch {
         try {
             Node winnerNode = rootNode.getChildWithMaxScore();
             tree.setRoot(winnerNode);
-
-//            winnerNode.getState().getBoard().printCurrentBoard();
-
             return winnerNode.getState().getBoard();
         } catch (Exception e) {
             return null;
         }
-
     }
 
     private Node selectPromisingNode(Node rootNode) {
