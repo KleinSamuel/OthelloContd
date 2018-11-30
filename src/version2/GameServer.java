@@ -2,9 +2,9 @@ package version2;
 
 import armin.ai.BirinciAI;
 //import old.OthelloAI2;
-import szte.mi.mi.Move;
-import szte.mi.mi.Player;
-import utils.Utils;
+import szte.mi.Move;
+import szte.mi.Player;
+import util.Utils;
 
 import java.util.Scanner;
 

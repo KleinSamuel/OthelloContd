@@ -1,6 +1,6 @@
 package armin.ai;
 
-import utils.Utils;
+import util.Utils;
 import version2.GameResult;
 import version2.PossibleMoves;
 

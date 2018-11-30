@@ -67,6 +67,15 @@ public class Node {
         return this.childArray.get(selectRandom);
     }
 
+    public Node getMatrixChildNode() {
+
+//        childArray
+
+        int noOfPossibleMoves = this.childArray.size();
+        int selectRandom = (int) (Math.random() * noOfPossibleMoves);
+        return this.childArray.get(selectRandom);
+    }
+
     public Node getChildWithMaxScore() {
         return Collections.max(this.childArray, Comparator.comparing(c -> {
             return c.getState().getVisitCount();

@@ -5,10 +5,10 @@ import ai.AI_Random;
 import szte.mi.Move;
 import szte.mi.Player;
 import utils.Utils;
+//import version2.OthelloAI2;
 
 import java.util.Scanner;
 
-//import old.OthelloAI2;
 
 public class GameServer {
 
@@ -60,7 +60,7 @@ public class GameServer {
 
     }
 
-    public GameResult playGameAI(Player p1, Player p2, long timePerGame, boolean quiet){
+    public GameResult playGameAI(Player p1, Player p2, long timePerGame, boolean quiet, boolean time){
 
         initGame();
 
@@ -160,13 +160,15 @@ public class GameServer {
                 break;
         }
 
-        System.out.println("Remaining time for:\nPlayer1: " + time_player_1 + " ms\nPlayer2: " + time_player_2 + " ms");
+        if (time) {
+            System.out.println("Score: " + result.black + ":" + result.white + "\tRemaining time for:\tPlayer1: " + time_player_1 + " ms\tPlayer2: " + time_player_2 + " ms");
+        }
 
         return result;
 
     }
 
-    public void startGameSeries(Player p1, Player p2, int roundsPerSide, long timePerGame, boolean quiet){
+    public void startGameSeries(Player p1, Player p2, int roundsPerSide, long timePerGame, boolean quiet, boolean time){
 
         if(!quiet){
             System.out.println("### ### ### ### ### ### ### ### ### ### ### ### ###");
@@ -194,7 +196,7 @@ public class GameServer {
         int white_timeouts = 0;
 
         for (int i = 1; i <= roundsPerSide; i++) {
-            GameResult result = playGameAI(p1, p2, timePerGame,true);
+            GameResult result = playGameAI(p1, p2, timePerGame,true, time);
             if(result.winner == 1){
                 h1_black++;
             }else if(result.winner == 2){
@@ -232,7 +234,7 @@ public class GameServer {
         }
 
         for (int i = 1; i <= roundsPerSide; i++) {
-            GameResult result = playGameAI(p2, p1, timePerGame,true);
+            GameResult result = playGameAI(p2, p1, timePerGame,true, time);
             if(result.winner == 1){
                 h2_black++;
             }else if(result.winner == 2){
@@ -360,16 +362,23 @@ public class GameServer {
         Player p_random = new AI_Random();
         Player p_random2 = new AI_Random();
         Player p_mcts = new AI_MCTS();
+        Player p_mcts2 = new AI_MCTS();
+//        Player p_oldm = new OthelloAI2();
+//        Player p_matrix = new AI_Matrix();
+//        Player p_greedy = new AI_Greedy();
 
-        server.startGameSeries(p_mcts, p_random, rounds, 8000, false);
+        server.startGameSeries(p_mcts, p_mcts2, rounds, 8000, false, true);
+        System.out.println("Player 1: mcts\nPlayer 2: minmax");
 
-//        GameResult result = server.playGameAI(p_random, p_mcts, 8000, false);
 
-//        GameResult result = server.playGameAI(p_random, p_mcts,4000, false);
+//        server.startGameSeries(p_random, p_oldm, rounds, 8000, false);
+//        System.out.println("Player 1: random\nPlayer 2: old minmax");
+
+
+//        GameResult result = server.playGameAI(p_random, p_mcts, 80000, false, true);
+//        GameResult result = server.playGameAI(p_random, p_minmax,4000, false);
 //        System.out.println(result);
 
         System.out.println(counter);
-
     }
-
 }

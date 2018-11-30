@@ -7,7 +7,7 @@ import java.util.List;
 
 public class MonteCarloTreeSearch {
 
-    private static final int WIN_SCORE = 10;
+    private static final int WIN_SCORE = 100;
     private int level;
     private int opponent;
 
@@ -27,17 +27,21 @@ public class MonteCarloTreeSearch {
 //        return 2 * (this.level - 1) + 1;
 //    }
 
+//    private int getMillisForCurrentLevel() {
+//        return 80;
+//    }
+
     private int getMillisForCurrentLevel() {
         if (level < 5) {
-            return 20;
+            return 30;
         } else if (level < 10) {
-            return 80;
+            return 40;
         } else if (level < 15) {
-            return 220;
+            return 65;   //this seems to be good
         } else if (level < 23) {
-            return 380;
+            return 40;
         } else
-            return 470;
+            return 60;
     }
 
     public Board findNextMove(Board board, int playerNo) {
@@ -58,14 +62,14 @@ public class MonteCarloTreeSearch {
 
 
             // Phase 2 - Expansion
-//            if (promisingNode.getState().getBoard().checkStatus() == Board.IN_PROGRESS)
             if (promisingNode.getState().getBoard().isGameOver() == Board.IN_PROGRESS)
                 expandNode(promisingNode);
 
             // Phase 3 - Simulation
             Node nodeToExplore = promisingNode;
             if (promisingNode.getChildArray().size() > 0) {
-                nodeToExplore = promisingNode.getRandomChildNode();
+//                nodeToExplore = promisingNode.getRandomChildNode();
+                nodeToExplore = promisingNode.getMatrixChildNode();
             }
             int playoutResult = simulateRandomPlayout(nodeToExplore);
             // Phase 4 - Update
@@ -118,12 +122,12 @@ public class MonteCarloTreeSearch {
             tempNode.getParent().getState().setWinScore(Integer.MIN_VALUE);
             return boardStatus;
         }
+
         while (boardStatus == Board.IN_PROGRESS) {
             tempState.togglePlayer();
             tempState.randomPlay();
             boardStatus = tempState.getBoard().isGameOver();
         }
-
         return boardStatus;
     }
 

@@ -1,7 +1,7 @@
 package version2;
 
-import utils.Coordinate;
-import utils.Utils;
+import util.Coordinate;
+import util.Utils;
 
 import java.util.HashMap;
 

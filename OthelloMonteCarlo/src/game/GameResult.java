@@ -2,8 +2,8 @@ package game;
 
 public class GameResult {
     public int winner;
-    int black;
-    int white;
+    public int black;
+    public int white;
     int illegalMove = -1;
     int timeout = -1;
 

@@ -1,7 +1,6 @@
 package ai;
 
 import game.Board;
-import game.GameServer;
 import game.PossibleMoves;
 import mct.MonteCarloTreeSearch;
 import szte.mi.Move;
@@ -30,18 +29,10 @@ public class AI_MCTS implements Player {
     public Move nextMove(Move prevMove, long tOpponent, long t) {
         turns+=1;
         updateChips(prevMove);
-
         PossibleMoves pMoves = new PossibleMoves(color, board.BOARD_BLACK, board.BOARD_WHITE);
 
         ArrayList<Integer> moveList = new ArrayList<>();
         moveList.addAll(pMoves.results.keySet());
-
-//        System.out.println("\nmovesList size " + moveList.size());
-//        moveList.forEach(x -> {
-//            System.out.println("["+Utils.positionToMove(x).x + "," + Utils.positionToMove(x).y+"]");
-//        });
-//
-//        board.printCurrentBoard();
 
         if(moveList.size() > 1) {
             MonteCarloTreeSearch mcts = new MonteCarloTreeSearch();
@@ -61,9 +52,6 @@ public class AI_MCTS implements Player {
             }
 
         } else if(moveList.size() == 1){
-
-//            System.out.println("\nCase2: >>>>>>>>>>>>>>>>>>>>>>>> this is very bad <<<<<<<<<<<<<<<<<<<<<\n\n");
-
             int selectedMove = moveList.get(0);
             Move coord = Utils.positionToMove(selectedMove);
             board.makeMove(color, coord.x, coord.y);
@@ -74,9 +62,7 @@ public class AI_MCTS implements Player {
     }
 
     private Move calculateMove(Board current, Board next) {
-//        long x = (next.BOARD_BLACK ^ next.BOARD_WHITE) ^ (current.BOARD_BLACK ^ current.BOARD_WHITE);
         long x =(next.BOARD_BLACK | next.BOARD_WHITE) ^ (current.BOARD_BLACK | current.BOARD_WHITE);
-
         int n = 0;
 
         for(int i =0; i<64;i++){
@@ -85,21 +71,11 @@ public class AI_MCTS implements Player {
                 break;
             }
         }
-
-//        System.out.println(Utils.printLong(x));
-//        System.out.println("bit found at " + n);
-//
-//        Coordinate coord = Utils.positionToCoordinate(63-n);
-//
-//        System.out.println(Utils.printLong(Utils.positionToLong(Utils.coordinateToPosition(coord))));
-
         return Utils.positionToMove(n);
     }
 
     private void updateChips(Move enemyMove){
-        if(enemyMove == null){
-            return;
-        }
+        if(enemyMove == null){ return; }
         board.makeMove(3 - color, enemyMove.x, enemyMove.y);
     }
 }

@@ -1,9 +1,10 @@
 package version2;
 
-import szte.mi.mi.Move;
-import szte.mi.mi.Player;
-import utils.Coordinate;
-import utils.Utils;
+
+import szte.mi.Move;
+import szte.mi.Player;
+import util.Coordinate;
+import util.Utils;
 
 import java.util.Random;
 

@@ -1,6 +1,6 @@
 package version2;
 
-import utils.Utils;
+import util.Utils;
 
 public class Heuristics {
 

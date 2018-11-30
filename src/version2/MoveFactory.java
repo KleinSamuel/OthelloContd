@@ -1,7 +1,5 @@
 package version2;
 
-import utils.Utils;
-
 public class MoveFactory {
 
     /**

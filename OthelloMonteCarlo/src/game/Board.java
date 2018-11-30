@@ -76,6 +76,10 @@ public class Board {
         }
     }
 
+    public GameResult isGameOver(boolean black) {
+        return determineWinner();
+    }
+
     public GameResult determineWinner(){
         int numBlack = 0;
         int numWhite = 0;
@@ -87,7 +91,6 @@ public class Board {
                 numWhite++;
             }
         }
-//        System.out.println(numBlack + " : " + numWhite);
         GameServer.counter++;
         return new GameResult(numBlack, numWhite);
     }

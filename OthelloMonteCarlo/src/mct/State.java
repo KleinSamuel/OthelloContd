@@ -16,6 +16,16 @@ public class State {
     private int visitCount;
     private double winScore;
 
+    private int[] posMatrix = new int[] {
+            1, 5, 3, 3,  3, 3, 5, 1,
+            5, 5, 4, 4,  4, 4, 5, 5,
+            3, 4, 2, 2,  2, 2, 4, 3,
+            3, 4, 2, 0,  0, 2, 4, 3,
+            3, 4, 2, 0,  0, 2, 4, 3,
+            3, 4, 2, 2,  2, 2, 4, 3,
+            5, 5, 4, 4,  4, 4, 5, 5,
+            1, 5, 3, 3,  3, 3, 5, 1 };
+
     public State() {
         board = new Board();
     }
@@ -60,6 +70,20 @@ public class State {
         PossibleMoves pm = new PossibleMoves(playerNo, board.BOARD_BLACK, board.BOARD_WHITE);
         List<Integer> availablePositions = new ArrayList<>();
         availablePositions.addAll(pm.results.keySet());
+//        int min = 10;
+//        List<Integer> pos = new ArrayList<>();
+//        for (int i = 0; i < availablePositions.size(); i++) {
+//            if (min > posMatrix[availablePositions.get(i)]) {
+//                min = posMatrix[availablePositions.get(i)];
+//                pos.clear();
+////                for (int j = 0; j <= 5 - posMatrix[availablePositions.get(i)]; j++) {
+//                    pos.add(availablePositions.get(i));
+////                }
+//            } else {
+//                pos.add(availablePositions.get(i));
+//            }
+//        }
+//        availablePositions = pos;
 
         Random rand = new Random();
 

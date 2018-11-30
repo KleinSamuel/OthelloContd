@@ -1,7 +1,7 @@
 package armin.ai;
 
-import utils.Coordinate;
-import utils.Utils;
+import util.Coordinate;
+import util.Utils;
 import version2.PossibleMoves;
 
 import java.util.ArrayList;

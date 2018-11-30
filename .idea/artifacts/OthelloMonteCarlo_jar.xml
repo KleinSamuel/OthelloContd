@@ -5,6 +5,7 @@
       <element id="module-output" name="OthelloMonteCarlo" />
       <element id="module-source" name="OthelloMonteCarlo" />
       <element id="file-copy" path="$PROJECT_DIR$/OthelloMonteCarlo/src/ai/player.txt" />
+      <element id="module-output" name="OthelloContd" />
     </root>
   </artifact>
 </component>
