@@ -30,19 +30,43 @@ public class MonteCarloTreeSearch {
 //    private int getMillisForCurrentLevel() {
 //        return 80;
 //    }
+//private int getMillisForCurrentLevel() {
+//    if (level < 5) {
+//        return 30;
+//    } else if (level < 10) {
+//        return 40;
+//    } else if (level < 15) {
+//        return 65;   //this seems to be good
+//    } else if (level < 23) {
+//        return 40;
+//    } else
+//        return 60;
+//}
 
-    private int getMillisForCurrentLevel() {
-        if (level < 5) {
-            return 30;
-        } else if (level < 10) {
-            return 40;
-        } else if (level < 15) {
-            return 65;   //this seems to be good
-        } else if (level < 23) {
-            return 40;
-        } else
-            return 60;
-    }
+//    private int getMillisForCurrentLevel() {  25w 16l 1d
+//        if (level < 5) {
+//            return 60;
+//        } else if (level < 10) {
+//            return 60;
+//        } else if (level < 15) {
+//            return 135;   //this seems to be good
+//        } else if (level < 23) {
+//            return 200;
+//        } else
+//            return 520;
+//    }
+private int getMillisForCurrentLevel() {    // 25w 15l 2d
+    if (level < 5) {
+        return 30;
+    } else if (level < 10) {
+        return 600;
+    } else if (level < 15) {
+        return 600;   //this seems to be good
+    } else if (level < 23) {
+        return 60;
+    } else
+        return 100;
+}
 
     public Board findNextMove(Board board, int playerNo) {
         long start = System.currentTimeMillis();

@@ -367,7 +367,7 @@ public class GameServer {
 //        Player p_matrix = new AI_Matrix();
 //        Player p_greedy = new AI_Greedy();
 
-        server.startGameSeries(p_mcts, p_mcts2, rounds, 8000, false, true);
+        server.startGameSeries(p_mcts, p_random, rounds, 16000, false, true);
         System.out.println("Player 1: mcts\nPlayer 2: minmax");
 
 
